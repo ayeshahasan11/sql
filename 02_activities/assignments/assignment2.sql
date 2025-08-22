@@ -89,7 +89,7 @@ SELECT
 	,customer_id
 	,market_date
 	,vendor_id
-	,COUNT() OVER (PARTITION BY customer_id ORDER BY product_id) AS times_purchased
+	,COUNT(*) OVER (PARTITION BY customer_id, product_id) AS times_purchased
 FROM customer_purchases
 ORDER BY customer_id, product_id, market_date;
 
@@ -289,4 +289,5 @@ SET current_quantity = (
 			ORDER BY vi.market_date DESC
 			LIMIT 1
 );
+
 
