@@ -54,7 +54,28 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+Following are two architectures for CUSTOMER_ADDRESS table:
+
+A. Overwrite/Type 1 SCD (slow changing dimensions):
+    This table will have following columns and will overwrite the existing records everytime address is updated.
+        - customer_id (PK, FK to Customer table)
+        - street
+        - city
+        - province
+        - postal_code
+    
+B. Retain History / Type 2 SCD (slow changing dimensions):
+    This table will have following columns and will create new rows for every new address with start_date and end_date.
+        - address_id (PK)
+        - customer_id (FK to customer table)
+        - street
+        - city
+        - province
+        - postal_code
+        - start_date
+        - end_date (NULL for current address)
+        - is_present_address (boolean)
+
 ```
 
 ***
